@@ -101,8 +101,8 @@ export const ButtonContainer = styled.div`
 
   &:hover {
     color: var(--color-text-especial);
-    filter: drop-shadow(0 1px 1px var(--color-text-especial));
-    text-shadow: 0 -1px 1px var(--color-text-especial);
+    filter: drop-shadow(0 0 1px var(--color-text-especial));
+    text-shadow: none;
     border-radius: 0px;
     font-size: 22px;
   }

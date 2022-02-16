@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { Container, BackgroundContainer, TitleContainer, ButtonContainer } from './styles';
 
@@ -9,6 +10,8 @@ function Home() {
 
     const [music, setMusic] = useState(0)
     const querry = 'poze'
+
+    const navigate = useNavigate();
 
     useEffect(()=>{
         fetch(`https://deezerdevs-deezer.p.rapidapi.com/search?q=${querry}&index=1&limit=1`, {
@@ -37,7 +40,7 @@ function Home() {
             <TitleContainer>
                 <h1>Promus</h1>
                 <p>Encontre suas musicas favoritas e se aventure por novos estilos!</p>
-                <ButtonContainer>
+                <ButtonContainer onClick={()=>{navigate('buscar')}}>
                     Começar
                 </ButtonContainer>
             </TitleContainer>

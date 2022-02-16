@@ -5,6 +5,7 @@ import GlobalStyle from './Styles/styles'
 
 // Pages
 import Home from './Pages/Home'
+import Search from './Pages/Search'
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home/>} />
+        <Route path="/buscar" element={<Search/>} />
       </Routes>
     </Router>
   );
