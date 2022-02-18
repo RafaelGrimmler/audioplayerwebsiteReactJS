@@ -25,7 +25,9 @@ export default createGlobalStyle`
     }
     
     #root {
-        --color-text-especial: #33c8f5;
+        --color-text-special: #ff8c00;
+        --color-general-background: #0d0c1a;
+        --color-special-background: #070612;
     }
     
 `;

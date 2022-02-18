@@ -22,6 +22,12 @@ export const BackgroundContainer = styled.div`
       width: 100vw;
       height: 100vh;
       position: absolute;
+
+      @media only screen and (max-width: 668px){
+        & {
+          object-fit: cover;
+        }
+      }
     }
 
     & div:nth-child(2) {
@@ -100,8 +106,8 @@ export const ButtonContainer = styled.div`
   transition: .5s;
 
   &:hover {
-    color: var(--color-text-especial);
-    filter: drop-shadow(0 0 1px var(--color-text-especial));
+    color: var(--color-text-special);
+    filter: drop-shadow(0 0 1px var(--color-text-special));
     text-shadow: none;
     border-radius: 0px;
     font-size: 22px;
