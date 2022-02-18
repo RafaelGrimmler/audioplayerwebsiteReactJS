@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Container, BorderStrip, RightArrow, LeftArrow, ArrowsContainer, LinksContainer, ItemSelectedBall, Item, SearchGlass, HomeIcon, ArtistIcon, AlbumIcon, PlayListIcon, GenreIcon } from './styles';
+import { Container, BorderStrip, RightArrow, LeftArrow, ArrowsContainer, LinksContainer, ItemSelectedBall, Item, SearchGlass, HomeIcon, ArtistIcon, AlbumIcon, PlayListIcon, GenreIcon, UpArrow, DownArrow } from './styles';
 
 function Navbar() {
 
@@ -8,15 +8,27 @@ function Navbar() {
   const [selected, setSelected] = useState(0)
   const [hoverContainer, setHoverContainer] = useState(false)
 
+  console.log(hoverContainer)
+
   return (
       <Container 
         onMouseOver={()=> setHoverContainer(true)}
         onMouseOut={()=> setHoverContainer(false)}
+        hoverContainer={hoverContainer}
         >
           <BorderStrip />
-          <ArrowsContainer>
+          <ArrowsContainer 
+            hoverContainer={hoverContainer}
+            onClick={()=> hoverContainer ? setHoverContainer(false) : setHoverContainer(true)}
+          >
             <RightArrow/>
             <LeftArrow/>
+            <UpArrow 
+              hoverContainer={hoverContainer}
+            />
+            <DownArrow 
+              hoverContainer={hoverContainer}
+            />
           </ArrowsContainer>
           <LinksContainer 
             hoverContainer={hoverContainer}
@@ -53,18 +65,23 @@ function Navbar() {
                       <span>{list[index]}</span>
                       {index === 0 && <HomeIcon 
                         selected={index === selected ? true : false}
+                        hoverContainer={hoverContainer}
                       />}
                       {index === 1 && <ArtistIcon 
                         selected={index === selected ? true : false}
+                        hoverContainer={hoverContainer}
                       />}
                       {index === 2 && <GenreIcon 
                         selected={index === selected ? true : false}
+                        hoverContainer={hoverContainer}
                       />}
                       {index === 3 && <AlbumIcon 
                         selected={index === selected ? true : false}
+                        hoverContainer={hoverContainer}
                       />}
                       {index === 4 && <PlayListIcon 
                         selected={index === selected ? true : false}
+                        hoverContainer={hoverContainer}
                       />}
                     </Item>
                   ))}

@@ -9,6 +9,7 @@ export const Container = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 99;
 `;
 
 export const BorderStrip = styled.div`
