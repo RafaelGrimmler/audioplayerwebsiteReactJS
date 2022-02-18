@@ -10,7 +10,6 @@ function Search() {
   return (
       <Container>
         <Navbar/>
-        <Player/>
       </Container>
   );
 }

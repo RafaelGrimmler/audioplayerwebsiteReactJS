@@ -28,6 +28,7 @@ export default createGlobalStyle`
         --color-text-special: #ff8c00;
         --color-general-background: #0d0c1a;
         --color-special-background: #070612;
+        --color-navbar-background-list: #161429;
     }
     
 `;
