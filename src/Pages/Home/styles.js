@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+import Circle from '../../Images/Home/Circle.svg'
 
 
 export const Container = styled.div`
@@ -8,10 +9,6 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
-  & .player {
-    display: none;
-  }
 `;
 
 export const BackgroundContainer = styled.div`
@@ -43,7 +40,7 @@ export const BackgroundContainer = styled.div`
     }
 `;
 
-export const TitleContainer = styled.div`
+export const TitleContainer = styled.main`
   width: 40%;
   height: 75%;
   position: absolute;
@@ -115,5 +112,97 @@ export const ButtonContainer = styled.div`
     text-shadow: none;
     border-radius: 0px;
     font-size: 22px;
+  }
+`;
+
+const Emerge = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+`;
+
+export const MiniPlayerContainer = styled.section`
+  width: 200px;
+  height: 100px;
+  background-color: var(--color-general-background);
+  border-radius: 40px;
+  position: absolute;
+  bottom: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: .5s;
+  animation-name: ${Emerge};
+  animation-duration: 2s;
+`;
+
+export const MiniPlayerWrapper = styled.div`
+  height: 90%;
+  width: 94%;
+  border-radius: 37px;
+  border: 2px solid var(--color-text-special);
+  display: flex;
+  transition: .5s;
+`;
+
+const MiniPlayerLeftContentAnimation = keyframes`
+  0%{
+    filter: drop-shadow(0 0 2px var(--color-text-special));
+    transform: scale(0.95) rotate(0deg);
+  }
+  25%{
+    filter: drop-shadow(0 0 4px red);
+    transform: scale(1) rotate(90deg);
+  }
+  50%{
+    filter: drop-shadow(0 0 4px white);
+    transform: scale(1.05) rotate(180deg);
+  }
+  75%{
+    filter: drop-shadow(0 0 4px blue);
+    transform: scale(1) rotate(90deg);
+  }
+  100%{
+    filter: drop-shadow(0 0 2px var(--color-text-special));
+    transform: scale(0.95) rotate(0deg);
+  }
+`;
+
+export const MiniPlayerLeftContent = styled.div`
+  width: 35%;
+  height: 100%;
+  border-bottom-left-radius: 37px;
+  border-top-left-radius: 37px;
+  background-image: ${`url(${Circle})`};
+  background-position: center center;
+  background-repeat: no-repeat;
+  filter: drop-shadow(0 0 10px var(--color-text-special));
+  animation-name: ${MiniPlayerLeftContentAnimation};
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  transition: .5s;
+`;
+
+export const MiniPlayerRightContent = styled.div`
+  width: 65%;
+  height: 100%;
+  border-bottom-right-radius: 37px;
+  border-top-right-radius: 37px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: .5s;
+
+  & span {
+    width: 80%;
+    max-height: 80%;
+    text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    color: white;
+    transition: .5s;
   }
 `;

@@ -1,5 +1,8 @@
 import styled, { keyframes } from 'styled-components';
 import { RiArrowDropRightLine, RiArrowDropLeftLine } from 'react-icons/ri'
+import { BsSearch, BsPeople, BsMusicNoteList } from 'react-icons/bs'
+import { AiOutlineHome, AiOutlineOrderedList } from 'react-icons/ai'
+import { FaCompactDisc } from 'react-icons/fa'
 
 const RightArrowMove = keyframes`
   0% {
@@ -45,17 +48,103 @@ export const LeftArrow = styled(RiArrowDropLeftLine)`
   animation-iteration-count: infinite;
 `;
 
+export const SearchGlass = styled(BsSearch)`
+  font-size: 22px;
+  color: var(--color-text-special);
+  transition: .5s;
+`;
+
+export const HomeIcon = styled(AiOutlineHome)`
+  font-size: 23px;
+  color: ${props => props.selected ? 'white' : 'var(--color-navbar-background-list)'};
+  transition: .5s;
+  z-index: 99;
+  filter: ${props => props.selected ? 'drop-shadow(0 0 1px black)' : ''};
+`;
+
+export const ArtistIcon = styled(BsPeople)`
+  font-size: 23px;
+  color: ${props => props.selected ? 'white' : 'var(--color-navbar-background-list)'};
+  transition: .5s;
+  z-index: 99;
+  filter: ${props => props.selected ? 'drop-shadow(0 0 1px black)' : ''};
+`;
+
+export const AlbumIcon = styled(FaCompactDisc)`
+  font-size: 23px;
+  color: ${props => props.selected ? 'white' : 'var(--color-navbar-background-list)'};
+  transition: .5s;
+  z-index: 99;
+  filter: ${props => props.selected ? 'drop-shadow(0 0 1px black)' : ''};
+`;
+
+export const PlayListIcon = styled(AiOutlineOrderedList)`
+  font-size: 23px;
+  color: ${props => props.selected ? 'white' : 'var(--color-navbar-background-list)'};
+  transition: .5s;
+  z-index: 99;
+  filter: ${props => props.selected ? 'drop-shadow(0 0 1px black)' : ''};
+`;
+
+export const GenreIcon = styled(BsMusicNoteList)`
+  font-size: 23px;
+  color: ${props => props.selected ? 'white' : 'var(--color-navbar-background-list)'};
+  transition: .5s;
+  z-index: 99;
+  filter: ${props => props.selected ? 'drop-shadow(0 0 1px black)' : ''};
+`;
+
 export const LinksContainer = styled.div`
-  width: 200px;
+  width: ${props => props.hoverContainer ? '200px' : '0px'};
   height: 90%;
   margin-left: 20px;
-  transform: .5s;
+  transition: .5s;
 
   & ul {
     width: 100%;
     margin-top: 15px;
     position: relative;
-    transform: .5s;
+    transition: .5s;
+  }
+
+  & form {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  & form input {
+    width: ${props => props.hoverContainer ? '100%' : '0%'};
+    padding-left: ${props => props.hoverContainer ? '15px' : '0'};
+    padding-right: ${props => props.hoverContainer ? '15px' : '0'};
+    height: 40px;
+    border-radius: 40px;
+    transition: .5s;
+    background-color: var(--color-navbar-background-list);
+    border: ${props => props.hoverContainer ? '1px solid var(--color-text-special)' : '0px solid'};
+    color: white;
+    font-size: 20px;
+  }
+
+  & form button {
+    width: ${props => props.hoverContainer ? '40px' : '0px'};
+    height: 90%;
+    background-color: var(--color-navbar-background-list);
+    border: none;
+    position: absolute;
+    right: 1px;
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  & form input::placeholder {
+    font-size: 20px;
+    font-style: italic;
+    font-stretch: extra-condensed;
   }
 `;
 
@@ -110,17 +199,20 @@ export const ItemSelectedBall = styled.div`
   position: absolute;
   right: 0;
   top: ${props => props.top};
-  border: 5px solid var(--color-navbar-background-list);
+  border: 3px solid var(--color-navbar-background-list);
   transition: .5s;
+  transform: ${props => props.hoverContainer ? '' : 'translateX(-250px)'};
 `;
 
 export const Item = styled.li`
-  width: ${props => props.selected ? '100%' : '90%'};
+  width: ${props => props.hoverContainer ? '100%' : '0%'};
   height: 40px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   background-color: var(--color-navbar-background-list);
-  padding-left: 15px;
+  padding-left: ${props => props.hoverContainer ? '15px' : '0px'};
+  padding-right: ${props => props.hoverContainer ? '9px' : '0px'};
   border-radius: 30px;
   color: ${props => props.selected ? 'var(--color-text-special)' : 'white'};
   cursor: pointer;
@@ -128,6 +220,11 @@ export const Item = styled.li`
 
   & + & {
     margin-top: 10px;
+  }
+
+  & span {
+    width: ${props => props.hoverContainer ? '0%' : '100%'};
+    overflow: ${props => props.hoverContainer ? 'unset' : 'hidden'};
   }
 `;
 

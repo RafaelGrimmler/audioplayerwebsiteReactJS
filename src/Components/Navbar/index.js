@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Container, BorderStrip, RightArrow, LeftArrow, ArrowsContainer, LinksContainer, ItemSelectedBall, Item } from './styles';
+import { Container, BorderStrip, RightArrow, LeftArrow, ArrowsContainer, LinksContainer, ItemSelectedBall, Item, SearchGlass, HomeIcon, ArtistIcon, AlbumIcon, PlayListIcon, GenreIcon } from './styles';
 
 function Navbar() {
 
@@ -18,18 +18,55 @@ function Navbar() {
             <RightArrow/>
             <LeftArrow/>
           </ArrowsContainer>
-          <LinksContainer hoverContainer={hoverContainer}>
-            <input type="text" />
+          <LinksContainer 
+            hoverContainer={hoverContainer}
+          >
+            <form>
+              <input 
+                type="text" 
+                placeholder='pesquisar'
+                name='music'
+              />
+              <button 
+                name='music'
+                type='submit'
+              >
+                <SearchGlass
+                  hoverContainer={hoverContainer}
+                />
+              </button>
+            </form>
             <ul>
-              <ItemSelectedBall top={selected * 50 + 'px'}/>
+              <ItemSelectedBall 
+                top={selected * 50 + 'px'}
+                hoverContainer={hoverContainer}
+              />
               {Array.from({ length: 5 })
                   .map((_ , index) => index)
                   .map((index) => (
                     <Item 
-                      key={index} 
+                      key={index}
+                      hoverContainer={hoverContainer}
                       selected={index === selected ? true : false}
                       onMouseOver={() => setSelected(index)}
-                    >{list[index]}</Item>
+                    >
+                      <span>{list[index]}</span>
+                      {index === 0 && <HomeIcon 
+                        selected={index === selected ? true : false}
+                      />}
+                      {index === 1 && <ArtistIcon 
+                        selected={index === selected ? true : false}
+                      />}
+                      {index === 2 && <GenreIcon 
+                        selected={index === selected ? true : false}
+                      />}
+                      {index === 3 && <AlbumIcon 
+                        selected={index === selected ? true : false}
+                      />}
+                      {index === 4 && <PlayListIcon 
+                        selected={index === selected ? true : false}
+                      />}
+                    </Item>
                   ))}
             </ul>
           </LinksContainer>
