@@ -18,6 +18,7 @@ export const BackgroundContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 95;
 
     & img:nth-child(1) {
       width: 100vw;
@@ -48,6 +49,7 @@ export const TitleContainer = styled.main`
   justify-content: start;
   align-items: center;
   flex-direction: column;
+  z-index: 95;
 
   @media only screen and (max-width: 668px){
     & {
@@ -137,6 +139,7 @@ export const MiniPlayerContainer = styled.section`
   transition: .5s;
   animation-name: ${Emerge};
   animation-duration: 2s;
+  z-index: 95;
 `;
 
 export const MiniPlayerWrapper = styled.div`

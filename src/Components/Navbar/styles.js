@@ -123,7 +123,7 @@ export const HomeIcon = styled(AiOutlineHome)`
   font-size: 23px;
   color: ${props => props.hoverContainer ? props.selected ? 'white' : 'var(--color-navbar-background-list)' : 'white' };
   transition: .5s;
-  z-index: 98;
+  z-index: 80;
   filter: ${props => props.hoverContainer ? props.selected ? 'drop-shadow(0 0 1px black)' : '' : 'drop-shadow(0 0 1px black)'};
 
   @media only screen and (max-width: 768px){
@@ -138,7 +138,7 @@ export const ArtistIcon = styled(BsPeople)`
   font-size: 23px;
   color: ${props => props.hoverContainer ? props.selected ? 'white' : 'var(--color-navbar-background-list)' : 'white' };
   transition: .5s;
-  z-index: 98;
+  z-index: 80;
   filter: ${props => props.hoverContainer ? props.selected ? 'drop-shadow(0 0 1px black)' : '' : 'drop-shadow(0 0 1px black)'};
 
   @media only screen and (max-width: 768px){
@@ -153,7 +153,7 @@ export const AlbumIcon = styled(FaCompactDisc)`
   font-size: 23px;
   color: ${props => props.hoverContainer ? props.selected ? 'white' : 'var(--color-navbar-background-list)' : 'white' };
   transition: .5s;
-  z-index: 98;
+  z-index: 80;
   filter: ${props => props.hoverContainer ? props.selected ? 'drop-shadow(0 0 1px black)' : '' : 'drop-shadow(0 0 1px black)'};
   
   @media only screen and (max-width: 768px){
@@ -168,7 +168,7 @@ export const PlayListIcon = styled(AiOutlineOrderedList)`
   font-size: 23px;
   color: ${props => props.hoverContainer ? props.selected ? 'white' : 'var(--color-navbar-background-list)' : 'white' };
   transition: .5s;
-  z-index: 98;
+  z-index: 80;
   filter: ${props => props.hoverContainer ? props.selected ? 'drop-shadow(0 0 1px black)' : '' : 'drop-shadow(0 0 1px black)'};
   
   @media only screen and (max-width: 768px){
@@ -183,7 +183,7 @@ export const GenreIcon = styled(BsMusicNoteList)`
   font-size: 23px;
   color: ${props => props.hoverContainer ? props.selected ? 'white' : 'var(--color-navbar-background-list)' : 'white' };
   transition: .5s;
-  z-index: 98;
+  z-index: 80;
   filter: ${props => props.hoverContainer ? props.selected ? 'drop-shadow(0 0 1px black)' : '' : 'drop-shadow(0 0 1px black)'};
   
   @media only screen and (max-width: 768px){
@@ -227,10 +227,15 @@ export const LinksContainer = styled.div`
     align-items: center;
   }
 
+  & form {
+    height: 40px;
+  }
+
   & form input {
     width: ${props => props.hoverContainer ? '100%' : '0%'};
     padding-left: ${props => props.hoverContainer ? '15px' : '0'};
     padding-right: ${props => props.hoverContainer ? '15px' : '0'};
+    display: ${props => props.hoverContainer ? 'block' : 'none'};
     height: 40px;
     border-radius: 40px;
     transition: .5s;

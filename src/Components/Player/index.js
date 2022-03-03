@@ -12,7 +12,7 @@ function Player() {
 
   const CurrentMusic = useCurrentMusic()
 
-  const name = 'MC poze - Vida'
+  const name = 'MC poze - Vida Louca'
 
   function onPlayHandle(){
     CurrentMusic.setMusicName(name)
