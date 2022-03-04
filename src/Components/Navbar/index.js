@@ -4,11 +4,9 @@ import { Container, BorderStrip, RightArrow, LeftArrow, ArrowsContainer, LinksCo
 
 function Navbar() {
 
-  const list = ['Início', 'Artistas', 'Gêneros', 'Albuns', 'PlayList']
+  const list = ['Início', 'Artistas', 'Gêneros', 'Álbuns', 'PlayList']
   const [selected, setSelected] = useState(0)
   const [hoverContainer, setHoverContainer] = useState(false)
-
-  console.log(hoverContainer)
 
   return (
       <Container 

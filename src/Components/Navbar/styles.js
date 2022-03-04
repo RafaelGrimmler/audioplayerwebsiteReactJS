@@ -316,6 +316,7 @@ export const Container = styled.div`
   transition: width .5s;
   display: flex;
   align-items: center;
+  z-index: 60;
 
   &:hover {
     width: 300px;

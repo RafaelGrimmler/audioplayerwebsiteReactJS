@@ -1,67 +1,44 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 
-import { Container, BackgroundContainer, TitleContainer, ButtonContainer, MiniPlayerContainer, MiniPlayerWrapper, MiniPlayerLeftContent, MiniPlayerRightContent } from './styles';
+import { Container, MainContentContainer } from './styles';
 
-//Image
-import Background from '../../Images/Home/Background.jpg'
+// components
+import Navbar from '../../Components/Navbar' 
+import ArtistHomeSlideBar from '../../Components/ArtistHomeSlideBar' 
 
-// context
-import { useCurrentMusic } from '../../Context/CurrentMusic'
+function Search() {
 
-function Home() {
+  const artistsIds = ['63912472', '7068771', '13', '4611283', '288166', '4545763', '7674918', '5576810', '68221232']
+  const artistList = Promise.all(
+    artistsIds.map( id => FetchFunction(id))
+  )
+  async function FetchFunction(id){
+    return await fetch(`https://deezerdevs-deezer.p.rapidapi.com/artist/${id}`, {
+    "method": "GET",
+    "headers": {
+      "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
+      "x-rapidapi-key": "2586c485fcmshc691be2f540fc1dp133582jsna421e997d391"
+    }})
+    .then(response => response.json())
+    .then(response => response)
+    .catch(err => {
+      console.error(err);
+    });
+  }
 
-    const CurrentMusic = useCurrentMusic()
-    const navigate = useNavigate();
+  return (
+      <Container>
+        <Navbar/>
 
-    return (
-        <Container>
-            <BackgroundContainer>
-                <img src={Background} alt="background" />
-                <div />
-            </BackgroundContainer>
-            <TitleContainer>
-                <h1>Promus</h1>
-                <p>Encontre suas musicas favoritas e se aventure por novos estilos!</p>
-                <ButtonContainer onClick={()=>{navigate('buscar')}}>
-                    Começar
-                </ButtonContainer>
-            </TitleContainer>
-            {CurrentMusic.playing && 
-                <MiniPlayerContainer>
-                    <MiniPlayerWrapper>
-                        <MiniPlayerLeftContent/>
-                        <MiniPlayerRightContent>
-                            <span>
-                                {CurrentMusic.musicName}
-                            </span>
-                        </MiniPlayerRightContent>
-                    </MiniPlayerWrapper>
-                </MiniPlayerContainer>
-            }
-        </Container>
-    );
+        <MainContentContainer>
+
+          <ArtistHomeSlideBar 
+            content={artistList}
+          />
+
+        </MainContentContainer>
+      </Container>
+  );
 }
 
-export default Home;
-
-
-
-
-// const [music, setMusic] = useState(0)
-// const querry = 'poze'
-// useEffect(()=>{
-//     fetch(`https://deezerdevs-deezer.p.rapidapi.com/search?q=${querry}&index=1&limit=1`, {
-//         "method": "GET",
-//         "headers": {
-//             "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
-//             "x-rapidapi-key": "bbf32784a9msh9fce2a6fb68e65cp1b9eb6jsn44e8c4d6e8ac"
-//         }
-//     })
-//     .then((response) => response.json())
-//     .then((response) => {
-//         setMusic(response.data)
-//     })
-// }, [querry])
-
-// console.log(music ? music[0] : '')
+export default Search;
