@@ -5,29 +5,34 @@ import GlobalStyle from './Styles/styles'
 
 // Pages
 import Home from './Pages/Home'
+import Search from "./Pages/Search";
 
 // components
 import Player from "./Components/Player"
 
 // context
 import { CurrentMusicProvider } from './Context/CurrentMusic'
+import { ReproductionProvider } from './Context/Reproduction'
 
 function App() {
   return (
     <CurrentMusicProvider>
+      <ReproductionProvider>
       
-      <Router>
-        <GlobalStyle/>
+        <Router>
+          <GlobalStyle/>
 
-        <Player />
-  
-        <Routes>
-          <Route path="/" element={<Home/>} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
+          <Player />
+    
+          <Routes>
+            <Route path="/" element={<Home/>} />
+            <Route path="/buscar/:querry" element={<Search/>} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
 
-      </Router>
+        </Router>
 
+      </ReproductionProvider>
     </CurrentMusicProvider>
   );
 }

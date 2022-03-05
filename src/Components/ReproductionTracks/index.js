@@ -2,7 +2,13 @@ import React from 'react';
 
 import { Container, Title, NoSongsContainer } from './styles';
 
+// context
+import { useReproduction } from '../../Context/Reproduction'
+
 function ReproductionTracks() {
+
+    const reproduction = useReproduction()
+
   return (
       <Container>
           <Title>

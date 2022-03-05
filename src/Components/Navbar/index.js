@@ -1,12 +1,21 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { Container, BorderStrip, RightArrow, LeftArrow, ArrowsContainer, LinksContainer, ItemSelectedBall, Item, SearchGlass, HomeIcon, ArtistIcon, AlbumIcon, PlayListIcon, UpArrow, DownArrow } from './styles';
 
 function Navbar() {
 
+  const navigator = useNavigate()
+
   const list = ['Início', 'Artistas', 'Álbuns', 'Reprodução']
   const [selected, setSelected] = useState(0)
   const [hoverContainer, setHoverContainer] = useState(false)
+  const [text, setText] = useState('')
+
+  const HandleForm = e => {
+    e.preventDefault()
+    navigator(`/buscar/${text}`)
+  }
 
   return (
       <Container 
@@ -31,11 +40,15 @@ function Navbar() {
           <LinksContainer 
             hoverContainer={hoverContainer}
           >
-            <form>
-              <input 
+            <form
+              onSubmit={HandleForm}
+            >
+              <input
                 type="text" 
                 placeholder='pesquisar'
                 name='music'
+                value={text}
+                onChange={e=>setText(e.target.value)}
               />
               <button 
                 name='music'

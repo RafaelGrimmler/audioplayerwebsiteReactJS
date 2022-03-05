@@ -11,7 +11,6 @@ import ReproductionTracks from '../../Components/ReproductionTracks'
 function Search() {
 
   // ARTISTS
-
   const artistsIds = ['63912472', '7068771', '13', '4611283', '288166', '4545763', '7674918', '5576810', '68221232', '246791', '1644275', '1429841', '8691']
   const artistList = Promise.all(
     artistsIds.map( id => FetchFunction('https://deezerdevs-deezer.p.rapidapi.com/artist/', id))
