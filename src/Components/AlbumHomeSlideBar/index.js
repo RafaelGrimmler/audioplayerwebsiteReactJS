@@ -13,19 +13,17 @@ function AlbumHomeSlideBar({content}) {
         }
     }, [content])
 
-    console.log(informations[0])
-
   return (
     <Container>
         <ScrollButton
-                onClick={()=>{
-                    if(positionx + 520 < 0){
-                        setPositionx(positionx + 520)
-                    }
-                    else {
-                        setPositionx(0)
-                    }
-                }}
+            onClick={()=>{
+                if(positionx + 520 < 0){
+                    setPositionx(positionx + 520)
+                }
+                else {
+                    setPositionx(0)
+                }
+            }}
         >
             <LeftArrow/>
         </ScrollButton>
