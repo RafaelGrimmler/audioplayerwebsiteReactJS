@@ -48,9 +48,9 @@ function AlbumHomeSlideBar({content}) {
                                         {item.title}
                                     </AlbumTitle>
                                     <ArtistName
-                                        title={item.artist.name}
+                                        title={item.artist.name ? item.artist.name : ''}
                                     >
-                                        {item.artist.name}
+                                        {item.artist.name ? item.artist.name : ''}
                                     </ArtistName>
                                 </ContentBlock>
                             </li>

@@ -46,12 +46,10 @@ function Navbar() {
               <input
                 type="text" 
                 placeholder='pesquisar'
-                name='music'
                 value={text}
                 onChange={e=>setText(e.target.value)}
               />
               <button 
-                name='music'
                 type='submit'
               >
                 <SearchGlass
