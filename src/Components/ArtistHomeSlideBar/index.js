@@ -11,19 +11,21 @@ function ArtistHomeSlideBar({ content }) {
         if(content){
             content.then(info => setInformations(info))
         }
-    }, [content])    
-
-    console.log(-(window.innerWidth - 70) * 0.86)
-    console.log(positionx)
-    console.log((informations.length * 220 - 20) -(window.innerWidth - 70) * 0.86)
-
+    }, [content])
 
     return (
         <Container
             width={informations.length * 220 - 20}
         >
             <ScrollButton
-                onClick={()=>{positionx < 0 && setPositionx(positionx+220)}}
+                onClick={()=>{
+                    if(positionx + 440 < 0){
+                        setPositionx(positionx + 440)
+                    }
+                    else {
+                        setPositionx(0)
+                    }
+                }}
             >
                 <LeftArrow/>
             </ScrollButton>
@@ -55,7 +57,14 @@ function ArtistHomeSlideBar({ content }) {
             </ListWrapper>
             <ScrollButton 
                 right={0}
-                onClick={()=>{positionx > -(informations.length * 220 - 20)+((window.innerWidth - 70) * 0.86) && setPositionx(positionx-220)}}
+                onClick={()=>{
+                    if(positionx - 440 > -(informations.length * 220 - 20)+(window.innerWidth - 70) * 0.86){
+                        setPositionx(positionx - 440)
+                    }
+                    else{
+                        setPositionx(-(informations.length * 220 - 20)+(window.innerWidth - 70) * 0.86)
+                    }
+                }}
             >
                 <RightArrow/>
             </ScrollButton>

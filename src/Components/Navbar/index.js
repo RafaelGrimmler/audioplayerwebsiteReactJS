@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
-import { Container, BorderStrip, RightArrow, LeftArrow, ArrowsContainer, LinksContainer, ItemSelectedBall, Item, SearchGlass, HomeIcon, ArtistIcon, AlbumIcon, PlayListIcon, GenreIcon, UpArrow, DownArrow } from './styles';
+import { Container, BorderStrip, RightArrow, LeftArrow, ArrowsContainer, LinksContainer, ItemSelectedBall, Item, SearchGlass, HomeIcon, ArtistIcon, AlbumIcon, PlayListIcon, UpArrow, DownArrow } from './styles';
 
 function Navbar() {
 
-  const list = ['Início', 'Artistas', 'Gêneros', 'Álbuns', 'PlayList']
+  const list = ['Início', 'Artistas', 'Álbuns', 'PlayList']
   const [selected, setSelected] = useState(0)
   const [hoverContainer, setHoverContainer] = useState(false)
 
@@ -51,7 +51,7 @@ function Navbar() {
                 top={selected * 50 + 'px'}
                 hoverContainer={hoverContainer}
               />
-              {Array.from({ length: 5 })
+              {Array.from({ length: 4 })
                   .map((_ , index) => index)
                   .map((index) => (
                     <Item 
@@ -69,15 +69,11 @@ function Navbar() {
                         selected={index === selected ? true : false}
                         hoverContainer={hoverContainer}
                       />}
-                      {index === 2 && <GenreIcon 
+                      {index === 2 && <AlbumIcon 
                         selected={index === selected ? true : false}
                         hoverContainer={hoverContainer}
                       />}
-                      {index === 3 && <AlbumIcon 
-                        selected={index === selected ? true : false}
-                        hoverContainer={hoverContainer}
-                      />}
-                      {index === 4 && <PlayListIcon 
+                      {index === 3 && <PlayListIcon 
                         selected={index === selected ? true : false}
                         hoverContainer={hoverContainer}
                       />}
