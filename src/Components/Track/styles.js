@@ -11,12 +11,12 @@ export const Container = styled.div`
 
 export const ImageContainer = styled.div`
     height: 100%;
-    width: 70px;
+    width: 60px;
 
     & img {
         width: 100%;
         height: 100%;
-    }
+    }   
 `;
 
 export const InformationsContainer = styled.div`
@@ -27,6 +27,12 @@ export const InformationsContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    @media only screen and (max-width: 463px){
+        & {
+            padding-right: 0px;
+        }
+    }
 `;
 
 export const TitleContainer = styled.div`
@@ -34,6 +40,42 @@ export const TitleContainer = styled.div`
     width: 400px;
     position: relative;
     flex-wrap: nowrap;
+
+    @media only screen and (max-width: 1333px){
+        & {
+            width: 200px;
+        }
+    }
+
+    @media only screen and (max-width: 1200px){
+        & {
+            width: 400px;
+        }
+    }
+
+    @media only screen and (max-width: 878px){
+        & {
+            width: 280px;
+        }
+    }
+
+    @media only screen and (max-width: 648px){
+        & {
+            width: 200px;
+        }
+    }
+
+    @media only screen and (max-width: 560px){
+        & {
+            width: 150px;
+        }
+    }
+
+    @media only screen and (max-width: 375px){
+      & {
+          width: 120px;
+      }
+    }
 `;
 
 export const TrackTitle = styled.h2`
@@ -47,6 +89,18 @@ export const TrackTitle = styled.h2`
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+
+    @media only screen and (max-width: 648px){
+        & {
+            font-size: 13px;
+        }
+    }
+    
+    @media only screen and (max-width: 375px){
+      & {
+          font-size: 11px;
+      }
+    }
 `;
 
 export const TrackArtist = styled.h2`
@@ -63,6 +117,11 @@ export const TrackArtist = styled.h2`
     white-space: nowrap;
     overflow: hidden;
 
+    @media only screen and (max-width: 648px){
+        & {
+            font-size: 11px;
+        }
+    }
 
     &:hover {
         color: var(--color-text-special);
@@ -77,6 +136,21 @@ export const InteractiveContainer = styled.div`
     align-items: center;
     justify-content: center;
     padding: 10px;
+
+    @media only screen and (max-width: 768px){
+        & {
+            width: 100px;
+            min-width: 100px;
+        }
+    }
+
+    @media only screen and (max-width: 375px){
+      & {
+          padding: 2px;
+          width: 70px;
+          min-width: 70px;
+      }
+    }
 `;
 
 export const Add = styled(IoMdAddCircle)`
@@ -109,6 +183,14 @@ export const ReproductionAction = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+
+    
+  @media only screen and (max-width: 375px){
+      & {
+          width: 40px;
+          height: 40px;
+      }
+  }
 `;
 
 export const PlayAction = styled.div`
@@ -118,6 +200,14 @@ export const PlayAction = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @media only screen and (max-width: 375px){
+      & {
+          width: 40px;
+          height: 40px;
+          margin-left: 3px;
+      }
+  }
 `;
 
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { Container, MainContentContainer, ResultContainer, ReproductionContainer, Title, TracksContainer } from './styles';
+import { Container, MainContentContainer, ResultContainer, ReproductionContainer, Title, TracksContainer, NothingContent } from './styles';
 
 // components
 import Navbar from '../../Components/Navbar';
@@ -15,7 +15,10 @@ function Search() {
     const [musics, setMusics] = useState([])
     const [index, setIndex] = useState(0)
     const [height, setHeight] = useState(0)
-
+    const [confirmContent, setConfirmContent] = useState(null)
+    const [text, setText] = useState('')
+    const [changeIndex, setChangeIndex] = useState(false)
+    
     async function FetchFunction(url, id, page){
       await fetch(`${url}${id}${page}`, {
       "method": "GET",
@@ -26,7 +29,12 @@ function Search() {
       .then(response => response.json())
       .then(response => {
         setMusics(musics => [...musics, response])
-        setHeight(height + response.data.length)
+        console.log(response)
+        if(!response.total) {
+          setConfirmContent(1)
+        }else{
+          setConfirmContent(null)
+        }
       })
       .catch(err => {
         console.error(err);
@@ -34,13 +42,31 @@ function Search() {
     }
 
     useEffect(()=>{
-      FetchFunction('https://deezerdevs-deezer.p.rapidapi.com/search?q=', querry, `&index=${index}&limit=40`)
-    }, [querry, index])
-  
-    const HandleScroll = (e) => {
-      if(e.target.scrollTop === (height * 65 + (height * 10 - 10) - 605)){
-        setIndex(index + 40)
+      setMusics([])
+      setHeight(0)
+    }, [querry])
+
+    useEffect(()=>{
+      musics.map( items => setHeight(height + items.data.length))
+    }, [musics])
+
+    useEffect(()=>{
+      if(text !== querry){
+        setText(querry)
+        FetchFunction('https://deezerdevs-deezer.p.rapidapi.com/search?q=', querry, `&index=${0}&limit=40`)
+        setIndex(0)
       }
+      if(changeIndex){
+        FetchFunction('https://deezerdevs-deezer.p.rapidapi.com/search?q=', querry, `&index=${index}&limit=40`)
+        setChangeIndex(false)
+      }
+    }, [querry, index])
+
+    const HandleScroll = (e) => {
+      if(e.target.scrollTop === (height * 65 + (height * 10 - 10) - (window.innerHeight - 305))){
+        setChangeIndex(true)
+        setIndex(index + 40)
+      }      
     }
 
     return (
@@ -65,6 +91,13 @@ function Search() {
                     )
                   }) : 
                   <Loading />
+                }
+                {
+                  (confirmContent !== null) && <NothingContent>
+                    <span>
+                      Sem resultados desta pesquisa.
+                    </span>
+                  </NothingContent>
                 }
               </TracksContainer>
             </ResultContainer>
