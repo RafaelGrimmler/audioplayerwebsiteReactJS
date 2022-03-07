@@ -70,6 +70,7 @@ function Navbar() {
                       hoverContainer={hoverContainer}
                       selected={index === selected ? true : false}
                       onMouseOver={() => setSelected(index)}
+                      onClick={()=>navigator(`/`)}
                     >
                       <span>{list[index]}</span>
                       {index === 0 && <HomeIcon 

@@ -6,12 +6,15 @@ import { Container, MainContentContainer, ResultContainer, ReproductionContainer
 // components
 import Navbar from '../../Components/Navbar';
 import Track from '../../Components/Track';
+import Loading from '../../Components/Loading';
 
 function Search() {
 
     const navigator = useNavigate()
     const { querry } = useParams()
-    const [musics, setMusics] = useState(null)
+    const [musics, setMusics] = useState([])
+    const [index, setIndex] = useState(0)
+    const [height, setHeight] = useState(0)
 
     async function FetchFunction(url, id, page){
       await fetch(`${url}${id}${page}`, {
@@ -21,15 +24,24 @@ function Search() {
         "x-rapidapi-key": "2586c485fcmshc691be2f540fc1dp133582jsna421e997d391"
       }})
       .then(response => response.json())
-      .then(response => setMusics(response))
+      .then(response => {
+        setMusics(musics => [...musics, response])
+        setHeight(height + response.data.length)
+      })
       .catch(err => {
         console.error(err);
       });
     }
 
     useEffect(()=>{
-      FetchFunction('https://deezerdevs-deezer.p.rapidapi.com/search?q=', querry, `&index=0&limit=25`)
-    }, [querry])
+      FetchFunction('https://deezerdevs-deezer.p.rapidapi.com/search?q=', querry, `&index=${index}&limit=40`)
+    }, [querry, index])
+  
+    const HandleScroll = (e) => {
+      if(e.target.scrollTop === (height * 65 + (height * 10 - 10) - 605)){
+        setIndex(index + 40)
+      }
+    }
 
     return (
       <Container>
@@ -39,17 +51,20 @@ function Search() {
               <Title>
                 Pesquisa: <span>'{querry}'</span>
               </Title>
-              <TracksContainer>
+              <TracksContainer
+                onScroll={HandleScroll}
+              >
                 {
-                  musics ? musics.data.map(item => 
-                  <li 
-                    key={item.id}
-                  >
-                    <Track  
-                      track={item}
-                    />
-                  </li>
-                  ) : ''
+                  musics.length > 0 ? musics.map( items => {
+                    return items.data.map(item =>
+                     <li key={item.id}>
+                      <Track 
+                        track={item}
+                      />
+                    </li>
+                    )
+                  }) : 
+                  <Loading />
                 }
               </TracksContainer>
             </ResultContainer>

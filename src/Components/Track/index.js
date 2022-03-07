@@ -3,9 +3,6 @@ import React from 'react';
 import { Container, ImageContainer, InformationsContainer, TitleContainer, InteractiveContainer, TrackTitle, TrackArtist, ReproductionAction, PlayAction, Add, Play } from './styles';
 
 function Track({ track }) {
-
-  console.log(track)
-
   return (
       <Container>
         <ImageContainer>

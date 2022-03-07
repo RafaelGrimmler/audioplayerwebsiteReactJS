@@ -31,13 +31,13 @@ export const InformationsContainer = styled.div`
 
 export const TitleContainer = styled.div`
     height: 100%;
-    width: 240px;
+    width: 400px;
     position: relative;
     flex-wrap: nowrap;
 `;
 
 export const TrackTitle = styled.h2`
-    width: 240px;
+    width: 100%;
     height: 50%;
     font-size: 16px;
     padding-top: 6px;
@@ -50,7 +50,7 @@ export const TrackTitle = styled.h2`
 `;
 
 export const TrackArtist = styled.h2`
-    width: 240px;
+    width: 100%;
     height: 50%;
     font-size: 13px;
     padding-bottom: 6px;
@@ -84,6 +84,7 @@ export const Add = styled(IoMdAddCircle)`
     color: white;
     transition: .5s;
     cursor: pointer;
+    filter: drop-shadow(0 2px 3px black);
 
     &:hover {
         color: var(--color-text-special);
@@ -95,6 +96,7 @@ export const Play = styled(AiFillPlayCircle)`
     color: white;
     transition: .5s;
     cursor: pointer;
+    filter: drop-shadow(0 2px 3px black);
 
     &:hover {
         color: var(--color-text-special);

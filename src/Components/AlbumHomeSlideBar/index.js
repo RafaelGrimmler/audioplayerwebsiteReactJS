@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
 
-import { Container, RightArrow, LeftArrow, ListWrapper, ScrollButton, ContentBlock, AlbumImageContainer, AlbumTitle, ArtistName } from './styles';
+import { Container, RightArrow, LeftArrow, ListWrapper, ScrollButton, ContentBlock, AlbumImageContainer, AlbumTitle, ArtistName, LoadingContainer } from './styles';
+
+import Loading from '../../Components/Loading'
 
 function AlbumHomeSlideBar({content}) {
 
@@ -15,18 +17,21 @@ function AlbumHomeSlideBar({content}) {
 
   return (
     <Container>
-        <ScrollButton
-            onClick={()=>{
-                if(positionx + 520 < 0){
-                    setPositionx(positionx + 520)
-                }
-                else {
-                    setPositionx(0)
-                }
-            }}
-        >
-            <LeftArrow/>
-        </ScrollButton>
+        {
+            informations.length > 0 ? 
+                <ScrollButton
+                onClick={()=>{
+                    if(positionx + 520 < 0){
+                        setPositionx(positionx + 520)
+                    }
+                    else {
+                        setPositionx(0)
+                    }
+                }}
+            >
+                <LeftArrow/>
+            </ScrollButton> : ''
+        }
         <ListWrapper 
                 position={'translateX(' + positionx + 'px)'}
             >
@@ -54,11 +59,16 @@ function AlbumHomeSlideBar({content}) {
                                     </ArtistName>
                                 </ContentBlock>
                             </li>
-                        ) : ''
+                        ) : 
+                        <LoadingContainer>
+                            <Loading/>
+                        </LoadingContainer>
                     }
                 </ul>
         </ListWrapper>
-        <ScrollButton 
+        {
+            informations.length > 0 ?
+            <ScrollButton 
             right={0}
             onClick={()=>{
                 if(positionx - 520 > -(informations.length * 260 - 20)+(window.innerWidth - 70) * 0.86){
@@ -68,9 +78,10 @@ function AlbumHomeSlideBar({content}) {
                     setPositionx(-(informations.length * 260 - 20)+(window.innerWidth - 70) * 0.86)
                 }
             }}
-        >
-            <RightArrow/>
-        </ScrollButton>
+            >
+                <RightArrow/>
+            </ScrollButton> : ''
+        }
     </Container>
     );
 }

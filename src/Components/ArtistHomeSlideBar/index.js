@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
-import { Container, ContentBlock, ArtistImageContainer, ScrollButton, RightArrow, LeftArrow, ListWrapper } from './styles';
+import { Container, ContentBlock, ArtistImageContainer, ScrollButton, RightArrow, LeftArrow, ListWrapper, LoadingContainer } from './styles';
+
+//components
+import Loading from '../../Components/Loading'
 
 function ArtistHomeSlideBar({ content }) {
 
@@ -17,18 +20,21 @@ function ArtistHomeSlideBar({ content }) {
         <Container
             width={informations.length * 220 - 20}
         >
-            <ScrollButton
-                onClick={()=>{
-                    if(positionx + 440 < 0){
-                        setPositionx(positionx + 440)
-                    }
-                    else {
-                        setPositionx(0)
-                    }
-                }}
-            >
-                <LeftArrow/>
-            </ScrollButton>
+            {
+                informations.length > 0 ? 
+                <ScrollButton
+                    onClick={()=>{
+                        if(positionx + 440 < 0){
+                            setPositionx(positionx + 440)
+                        }
+                        else {
+                            setPositionx(0)
+                        }
+                    }}
+                >
+                    <LeftArrow/>
+                </ScrollButton> : ''
+            }
             <ListWrapper 
                 position={'translateX(' + positionx + 'px)'}
             >
@@ -51,23 +57,29 @@ function ArtistHomeSlideBar({ content }) {
                                     </span>
                                 </ContentBlock>
                             </li>
-                        ) : ''
+                        ) : 
+                        <LoadingContainer>
+                            <Loading/>
+                        </LoadingContainer>
                     }
                 </ul>
             </ListWrapper>
-            <ScrollButton 
-                right={0}
-                onClick={()=>{
-                    if(positionx - 440 > -(informations.length * 220 - 20)+(window.innerWidth - 70) * 0.86){
-                        setPositionx(positionx - 440)
-                    }
-                    else{
-                        setPositionx(-(informations.length * 220 - 20)+(window.innerWidth - 70) * 0.86)
-                    }
-                }}
-            >
-                <RightArrow/>
-            </ScrollButton>
+            {
+                informations.length > 0 ? 
+                <ScrollButton 
+                    right={0}
+                    onClick={()=>{
+                        if(positionx - 440 > -(informations.length * 220 - 20)+(window.innerWidth - 70) * 0.86){
+                            setPositionx(positionx - 440)
+                        }
+                        else{
+                            setPositionx(-(informations.length * 220 - 20)+(window.innerWidth - 70) * 0.86)
+                        }
+                    }}
+                >
+                    <RightArrow/>
+                </ScrollButton> : ''
+            }
         </Container>
     );
 }

@@ -26,11 +26,12 @@ export const MainContentContainer = styled.main`
 `;
 
 export const ResultContainer = styled.div`
-  width: 900px;
+  width: 1200px;
   height: 700px;
   background-color: var(--color-special-background);
   margin-top: 40px;
   margin-right: 50px;
+  margin-left: 10px;
   padding-left: 30px;
   padding-right: 30px;
   padding-top: 10px;
@@ -46,6 +47,7 @@ export const ReproductionContainer = styled.div`
   padding-right: 30px;
   padding-top: 10px;
   padding-bottom: 10px;
+  margin-right: 10px;
 `;
 
 export const Title = styled.h2`
@@ -68,6 +70,7 @@ export const TracksContainer = styled.ul`
   grid-row-gap: 10px;
   margin-top: 20px;
   overflow-y: scroll;
+  overflow-x: hidden;
 
   &::-webkit-scrollbar {
     width: 6px;

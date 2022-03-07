@@ -50,8 +50,9 @@ export const Container = styled.div`
 `;
 
 export const ListWrapper = styled.div`
-    width: ${props => props.width}px;
+    //width: ${props => props.width}px;
     height: 200px;
+    width: 100%;
     transform: ${props => props.position};
     transition: 0.5s;
 `;
@@ -114,4 +115,12 @@ export const ScrollButton = styled.button`
             display: none;
         }
     }
+`;
+
+export const LoadingContainer = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `;

@@ -50,8 +50,9 @@ export const Container = styled.div`
 `;
 
 export const ListWrapper = styled.div`
-    width: ${props => props.width}px;
+    //width: ${props => props.width}px;
     height: 260px;
+    width: 100%;
     transform: ${props => props.position};
     transition: 0.5s;
 `;
@@ -129,4 +130,12 @@ export const AlbumImageContainer = styled.div`
         border-radius: 5%;
         filter: drop-shadow(0 0 5px black);
     }
+`;
+
+export const LoadingContainer = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `;
