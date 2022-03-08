@@ -8,16 +8,19 @@ export function useCurrentMusic(){
 
 export function CurrentMusicProvider({ children }){
 
-    const [musicName, setMusicName] = useState(null)
+    const [track, setTrack] = useState(null)
     const [playing, setPlaying] = useState(false)
+    const [reproduction, setReproduction] = useState(false)
 
     return(
         <CurrentMusicContext.Provider
             value={{
-                musicName,
-                setMusicName,
+                track,
+                setTrack,
                 playing, 
-                setPlaying
+                setPlaying,
+                reproduction,
+                setReproduction
             }}
         >
             {children}

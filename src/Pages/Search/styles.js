@@ -125,8 +125,9 @@ export const Title = styled.h2`
 export const TracksContainer = styled.ul`
   width: 100%;
   height: calc(100% - 85px);
-  display: grid;
-  grid-row-gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   margin-top: 20px;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -154,6 +155,3 @@ export const NothingContent = styled.div`
     text-align: center;
   }
 `;
-
-
-

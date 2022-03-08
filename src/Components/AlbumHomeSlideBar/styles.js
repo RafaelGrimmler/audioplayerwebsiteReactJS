@@ -96,7 +96,7 @@ export const ContentBlock = styled.div`
 
 export const AlbumTitle = styled.span`
     color: white;
-    margin-top: 15px;
+    margin-top: 25px;
     width: 180px;
     text-align: center;
     overflow: hidden;

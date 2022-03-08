@@ -29,7 +29,6 @@ function Search() {
       .then(response => response.json())
       .then(response => {
         setMusics(musics => [...musics, response])
-        console.log(response)
         if(!response.total) {
           setConfirmContent(1)
         }else{
@@ -66,7 +65,7 @@ function Search() {
       if(e.target.scrollTop === (height * 65 + (height * 10 - 10) - (window.innerHeight - 305))){
         setChangeIndex(true)
         setIndex(index + 40)
-      }      
+      }   
     }
 
     return (

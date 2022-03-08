@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 
-import { Container, RightArrow, LeftArrow, ListWrapper, ScrollButton, ContentBlock, AlbumImageContainer, AlbumTitle, ArtistName, LoadingContainer } from './styles';
+import { Container, RightArrow, LeftArrow, ListWrapper, ScrollButton, ContentBlock, AlbumImageContainer, AlbumTitle, LoadingContainer } from './styles';
 
 import Loading from '../../Components/Loading'
 
@@ -52,11 +52,6 @@ function AlbumHomeSlideBar({content}) {
                                     <AlbumTitle>
                                         {item.title}
                                     </AlbumTitle>
-                                    <ArtistName
-                                        title={item.artist.name ? item.artist.name : ''}
-                                    >
-                                        {item.artist.name ? item.artist.name : ''}
-                                    </ArtistName>
                                 </ContentBlock>
                             </li>
                         ) : 

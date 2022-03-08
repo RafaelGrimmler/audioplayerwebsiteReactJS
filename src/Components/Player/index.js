@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { Container, BorderStrip, ControlsContainer, MusicInformation } from './styles';
 
@@ -7,15 +7,14 @@ import 'react-h5-audio-player/lib/styles.css';
 
 // context
 import { useCurrentMusic } from '../../Context/CurrentMusic'
+import { createRef } from 'react/cjs/react.production.min';
 
 function Player() {
 
   const CurrentMusic = useCurrentMusic()
-
-  const name = 'MC poze - Vida Louca'
+  const player = createRef()
 
   function onPlayHandle(){
-    CurrentMusic.setMusicName(name)
     CurrentMusic.setPlaying(true)
   }
 
@@ -23,18 +22,31 @@ function Player() {
     CurrentMusic.setPlaying(false)
   }
 
+  useEffect(()=>{
+    if(CurrentMusic.playing){
+      player.current.audio.current.play()
+    }else{
+      player.current.audio.current.pause();
+    }
+  }, [CurrentMusic.playing])
+
   return (
     <Container>
       <BorderStrip />
       <MusicInformation>
-          {name} 
+        {
+          CurrentMusic.track && CurrentMusic.track.title
+          
+        }
       </MusicInformation>
       <ControlsContainer>
         <AudioPlayer
           onPlay={onPlayHandle}
           onPause={onPauseHandle}
-          src="https://cdns-preview-f.dzcdn.net/stream/c-f73300d457eb5fb6ad13670c7f9eb8e9-3.mp3"
+          src={CurrentMusic.track ? CurrentMusic.track.preview : ""}
           showSkipControls={true} 
+          autoPlayAfterSrcChange={true}
+          ref={player}
         />
       </ControlsContainer>
     </Container>
