@@ -131,7 +131,7 @@ export const MusicInformation = styled.span`
   top: 15px;
   width: 50%;
   text-align: center;
-  text-overflow: clip;
+  text-overflow: ellipsis;
   white-space: nowrap; 
   overflow: hidden;
 
@@ -144,6 +144,15 @@ export const MusicInformation = styled.span`
   @media only screen and (max-width: 425px){
     & {
       width: 90%;
+    }
+  }
+
+  & span {
+    transition: .5s;
+    cursor: pointer;
+
+    &:hover {
+      color: var(--color-text-special);
     }
   }
 `;

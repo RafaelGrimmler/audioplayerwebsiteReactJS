@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { IoMdAddCircle } from 'react-icons/io'
 import { AiFillPlayCircle, AiFillPauseCircle } from 'react-icons/ai'
+import { IoIosCloseCircle } from 'react-icons/io'
 import { keyframes } from 'styled-components';
 
 export const ImagePlayContainer = styled.div`
@@ -56,13 +57,19 @@ export const InformationsContainer = styled.div`
 
 export const TitleContainer = styled.div`
     height: 100%;
-    width: 400px;
+    width: ${props => props.titleContainerWidth}px;
     position: relative;
     flex-wrap: nowrap;
 
     @media only screen and (max-width: 1333px){
         & {
             width: 200px;
+        }
+    }
+
+    @media only screen and (max-width: 1409px){
+        & {
+            width: ${props => props.titleContainerWidthResz}px;
         }
     }
 
@@ -154,8 +161,8 @@ export const TrackArtist = styled.h2`
 `;
 
 export const InteractiveContainer = styled.div`
-    width: 150px;
-    min-width: 150px;
+    width: ${props => props.interactiveContainerWidth}px;
+    min-width: ${props => props.interactiveContainerWidth}px;
     height: 100%;
     display: flex;
     align-items: center;
@@ -187,6 +194,20 @@ export const Add = styled(IoMdAddCircle)`
 
     &:hover {
         color: var(--color-text-special);
+        transform: scale(1.2);
+    }
+`;
+
+export const Remove = styled(IoIosCloseCircle)`
+    font-size: 29px;
+    color: white;
+    transition: .5s;
+    cursor: pointer;
+    filter: drop-shadow(0 2px 3px black);
+
+    &:hover {
+        color: var(--color-text-special);
+        transform: scale(1.2);
     }
 `;
 
@@ -196,6 +217,8 @@ export const Play = styled(AiFillPlayCircle)`
     transition: .5s;
     cursor: pointer;
     filter: drop-shadow(0 2px 3px black);
+    display: ${props=>props.display};
+
 
     &:hover {
         color: var(--color-text-special);

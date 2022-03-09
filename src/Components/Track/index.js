@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from 'react';
 
-import { Container, ImageContainer, InformationsContainer, TitleContainer, InteractiveContainer, TrackTitle, TrackArtist, ReproductionAction, PlayAction, Add, Play, ImagePlayContainer, Pause, CircleSvgContainer } from './styles';
+import { Container, ImageContainer, InformationsContainer, TitleContainer, InteractiveContainer, TrackTitle, TrackArtist, ReproductionAction, PlayAction, Add, Play, ImagePlayContainer, Pause, CircleSvgContainer, Remove } from './styles';
 
 // context
 import { useCurrentMusic } from '../../Context/CurrentMusic'
+import {useReproduction} from '../../Context/Reproduction'
 
 // image
 import circle from '../../Images/circle.svg'
 
-function Track({ track }) {
+function Track({ track, titleContainerWidth, interactiveContainerWidth, titleContainerWidthResz, reproduction, index }) {
 
+  const Reproduction = useReproduction()
   const CurrentMusic = useCurrentMusic()
   const [changeTrack, setChangeTrack] = useState(false)
 
-  const HandlePlay = () => {
+  const HandlePlayPause = () => {
     if(CurrentMusic.track){
       if(CurrentMusic.track === track){
         if(CurrentMusic.playing === true){
@@ -50,6 +52,14 @@ function Track({ track }) {
     return true
   }
 
+  const HandleAdd = () => {
+    Reproduction.addTrack(track)
+  }
+
+  const HandleRemove = () => {
+    Reproduction.removeTrack(index)
+  }
+
   return (
       <Container>
         <ImageContainer>
@@ -67,16 +77,21 @@ function Track({ track }) {
             />
             <Play
               fs={PlayingEffects() ? '38' : CurrentMusic.playing ? '0' : '38'}
-              onClick={HandlePlay}
+              onClick={HandlePlayPause}
+              display={PlayingEffects() ? 'block' : CurrentMusic.playing ? 'none' : 'block'}
             />
             <Pause
               fs={PlayingEffects() ? '0' : CurrentMusic.playing ? '38' : '0'}
-              onClick={HandlePlay}
+              onClick={HandlePlayPause}
+              display={PlayingEffects() ? 'none' : CurrentMusic.playing ? 'block' : 'none'}
             />
           </ImagePlayContainer>
         </ImageContainer>
         <InformationsContainer>
-          <TitleContainer>
+          <TitleContainer
+            titleContainerWidth={titleContainerWidth}
+            titleContainerWidthResz={titleContainerWidthResz}
+          >
             <TrackTitle
               color={PlayingEffects() ? 'white' : 'var(--color-text-special)'}
             >
@@ -88,18 +103,30 @@ function Track({ track }) {
               {track.artist.name}
             </TrackArtist>
           </TitleContainer>
-          <InteractiveContainer>
+          <InteractiveContainer
+            interactiveContainerWidth={interactiveContainerWidth}
+          >
             <ReproductionAction>
-              <Add />
+              {
+                reproduction ? 
+                <Remove
+                  onClick={HandleRemove}
+                /> :
+                <Add 
+                  onClick={HandleAdd}
+                />
+              }
             </ReproductionAction>
             <PlayAction>
               <Play 
                 fs={PlayingEffects() ? '29' : CurrentMusic.playing ? '0' : '29'}
-                onClick={HandlePlay}
+                onClick={HandlePlayPause}
+                display={PlayingEffects() ? 'block' : CurrentMusic.playing ? 'none' : 'block'}
               />
               <Pause
                 fs={PlayingEffects() ? '0' : CurrentMusic.playing ? '29' : '0'}
-                onClick={HandlePlay}
+                onClick={HandlePlayPause}
+                display={PlayingEffects() ? 'none' : CurrentMusic.playing ? 'block' : 'none'}
               />
             </PlayAction>
           </InteractiveContainer>

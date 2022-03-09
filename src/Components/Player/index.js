@@ -34,10 +34,13 @@ function Player() {
     <Container>
       <BorderStrip />
       <MusicInformation>
-        {
-          CurrentMusic.track && CurrentMusic.track.title
-          
-        }
+        <span>
+          {CurrentMusic.track && CurrentMusic.track.artist.name}
+        </span>
+        {' - '}
+        <span>
+           {CurrentMusic.track && CurrentMusic.track.title}
+        </span>
       </MusicInformation>
       <ControlsContainer>
         <AudioPlayer

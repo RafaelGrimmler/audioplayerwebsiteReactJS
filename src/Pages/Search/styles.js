@@ -103,6 +103,7 @@ export const Title = styled.h2`
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    position: relative;
 
     @media only screen and (max-width: 768px){
         & {
@@ -153,5 +154,20 @@ export const NothingContent = styled.div`
     font-size: 30px;
     color: white;
     text-align: center;
+  }
+`;
+
+export const ClearReproduction = styled.span`
+  font-size: 20px;
+  color: white;
+  transition: .5s;
+  cursor: pointer;
+  position: absolute;
+  top: 7px;
+  right: 0;
+  
+  &:hover {
+    color: var(--color-text-special);
+    font-size: 22px;
   }
 `;
