@@ -1,4 +1,4 @@
-Site de música
+<h1>Site de música</h1>
 
 ### `npm start`
 
