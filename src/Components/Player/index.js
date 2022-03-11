@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Container, BorderStrip, ControlsContainer, MusicInformation } from './styles';
 
@@ -7,12 +7,15 @@ import 'react-h5-audio-player/lib/styles.css';
 
 // context
 import { useCurrentMusic } from '../../Context/CurrentMusic'
+import { useReproduction } from '../../Context/Reproduction'
 import { createRef } from 'react/cjs/react.production.min';
 
 function Player() {
 
   const CurrentMusic = useCurrentMusic()
+  const Reproduction = useReproduction()
   const player = createRef()
+  const [changeStage, setChangeStage] = useState(false)
 
   function onPlayHandle(){
     CurrentMusic.setPlaying(true)
@@ -21,6 +24,20 @@ function Player() {
   function onPauseHandle(){
     CurrentMusic.setPlaying(false)
   }
+
+  function onEndedHandle(){
+    if(CurrentMusic.reproduction){
+      CurrentMusic.setTrack(null)
+      setChangeStage(true)
+    }
+  }
+
+  useEffect(()=>{
+    if(changeStage){
+      CurrentMusic.setTrack(Reproduction.changeReproductionIndex())
+      setChangeStage(false)
+    }
+  }, [changeStage])
 
   useEffect(()=>{
     if(CurrentMusic.playing){
@@ -46,6 +63,7 @@ function Player() {
         <AudioPlayer
           onPlay={onPlayHandle}
           onPause={onPauseHandle}
+          onEnded={onEndedHandle}
           src={CurrentMusic.track ? CurrentMusic.track.preview : ""}
           showSkipControls={true} 
           autoPlayAfterSrcChange={true}

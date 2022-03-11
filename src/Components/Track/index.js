@@ -9,7 +9,7 @@ import {useReproduction} from '../../Context/Reproduction'
 // image
 import circle from '../../Images/circle.svg'
 
-function Track({ track, titleContainerWidth, interactiveContainerWidth, titleContainerWidthResz, reproduction, index }) {
+function Track({ track, titleContainerWidth, interactiveContainerWidth, titleContainerWidthResz, reproduction }) {
 
   const Reproduction = useReproduction()
   const CurrentMusic = useCurrentMusic()
@@ -24,6 +24,14 @@ function Track({ track, titleContainerWidth, interactiveContainerWidth, titleCon
           CurrentMusic.setPlaying(true)
         }
       }else{
+        if(CurrentMusic.track.key === track.key && track.key){
+          if(CurrentMusic.playing === true){
+            CurrentMusic.setPlaying(false)
+          }else{
+            CurrentMusic.setPlaying(true)
+          }
+          return
+        }
         CurrentMusic.setTrack(null)
         setChangeTrack(true)
         CurrentMusic.setPlaying(true)
@@ -32,6 +40,14 @@ function Track({ track, titleContainerWidth, interactiveContainerWidth, titleCon
     else{
       CurrentMusic.setTrack(track)
       CurrentMusic.setPlaying(true)
+    }
+    if(track.key && !CurrentMusic.reproduction){
+      CurrentMusic.setReproduction(true)
+    }
+    else{
+      if(!track.key && CurrentMusic.reproduction){
+        CurrentMusic.setReproduction(false)
+      }
     }
   } 
 
@@ -44,6 +60,9 @@ function Track({ track, titleContainerWidth, interactiveContainerWidth, titleCon
 
   function PlayingEffects(){
     if(CurrentMusic.track){
+      if(CurrentMusic.track.key === track.key && track.key){
+        return false
+      }
       if(CurrentMusic.track === track){
         return false
       }
@@ -57,7 +76,7 @@ function Track({ track, titleContainerWidth, interactiveContainerWidth, titleCon
   }
 
   const HandleRemove = () => {
-    Reproduction.removeTrack(index)
+    Reproduction.removeTrack(track.key)
   }
 
   return (

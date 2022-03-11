@@ -31,7 +31,7 @@ function Search() {
 
   // ALBUMS
 
-  const albumsIds = ['280055352', '277183122', '206786622', '54740792', '286915642', '273739992', '264223132', '395161', '324200', '125748', '121836132', '142112532']
+  const albumsIds = ['280055352', '277183122', '206786622', '54740792', '286915642', '273739992', '264223132', '395161', '324200', '125748', '121836132']
   const albumsList = Promise.all(
     albumsIds.map( id => FetchFunction('https://deezerdevs-deezer.p.rapidapi.com/album/', id))
   )

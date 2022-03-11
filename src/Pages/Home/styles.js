@@ -16,6 +16,7 @@ export const MainContentContainer = styled.main`
   top: 0;
   align-items: center;
   overflow-y: scroll;
+
   
   @media only screen and (max-width: 768px){
     & {
