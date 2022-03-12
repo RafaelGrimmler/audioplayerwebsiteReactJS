@@ -40,6 +40,9 @@ function Track({ track, titleContainerWidth, interactiveContainerWidth, titleCon
     else{
       CurrentMusic.setTrack(track)
       CurrentMusic.setPlaying(true)
+      if(track.key){
+        Reproduction.changeReproductionIndexByPlay(track.key)
+      }
     }
     if(track.key && !CurrentMusic.reproduction){
       CurrentMusic.setReproduction(true)
@@ -55,6 +58,9 @@ function Track({ track, titleContainerWidth, interactiveContainerWidth, titleCon
     if(changeTrack){
       CurrentMusic.setTrack(track)
       setChangeTrack(false)
+      if(CurrentMusic.reproduction){
+        Reproduction.changeReproductionIndexByPlay(track.key)
+      }
     }
   }, [changeTrack])
 
@@ -76,6 +82,7 @@ function Track({ track, titleContainerWidth, interactiveContainerWidth, titleCon
   }
 
   const HandleRemove = () => {
+    console.log(Reproduction.changeReproductionIndexByRemove(track.key))
     Reproduction.removeTrack(track.key)
   }
 

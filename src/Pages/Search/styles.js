@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { GiBroom } from 'react-icons/gi'
+import { AiFillPlayCircle, AiFillPauseCircle } from 'react-icons/ai'
 
 export const Container = styled.div`
   width: 100vw;
@@ -79,6 +81,7 @@ export const ReproductionContainer = styled.div`
   padding-top: 10px;
   padding-bottom: 10px;
   margin-right: 10px;
+  position: relative;
 
   @media only screen and (max-width: 1333px){
       & {
@@ -157,17 +160,85 @@ export const NothingContent = styled.div`
   }
 `;
 
-export const ClearReproduction = styled.span`
+export const BroomIcon = styled(GiBroom)`
   font-size: 20px;
+  transition: 0.5s;
+  color: var(--color-general-background);
+`;
+
+export const BroomContainer = styled.div`
+  width: 35px;
+  height: 35px;
+  background-color: red;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-text-special);
+  cursor: pointer;
+  transition: .5s;
+  filter: drop-shadow(0 0px 1px black);
+
+  &:hover ${BroomIcon}{
+    color: var(--color-text-special);
+    font-size: 25px;
+  }
+
+  &:hover {
+    transform: scale(1.2);
+    background-color: var(--color-general-background);
+    filter: drop-shadow(0 0px 2px var(--color-text-special));
+  }
+`;
+
+export const ClearReproduction = styled.div`
+  height: 45px;
+  width: 100px;
+  color: white;
+  transition: .5s;
+  position: absolute;
+  top: 5px;
+  right: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const Play = styled(AiFillPlayCircle)`
+  font-size: 40px;
   color: white;
   transition: .5s;
   cursor: pointer;
-  position: absolute;
-  top: 7px;
-  right: 0;
-  
+  color: var(--color-text-special);
+  filter: drop-shadow(0 0px 1px black);
+`;
+
+export const Pause = styled(AiFillPauseCircle)`
+  font-size: 40px;
+  color: white;
+  transition: .5s;
+  cursor: pointer;
+  color: var(--color-text-special);
+  filter: drop-shadow(0 0px 1px black);
+`;
+
+export const PlayPauseReproductionContainer = styled.div`
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: .5s;
+
+  &:hover ${Play},
+  &:hover ${Pause}{
+    transform: scale(1.2);
+    color: var(--color-general-background);
+    filter: drop-shadow(0 0px 2px var(--color-text-special));
+  }
+
   &:hover {
-    color: var(--color-text-special);
-    font-size: 22px;
+    background-color: var(--color-text-special);
   }
 `;

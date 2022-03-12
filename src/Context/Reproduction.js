@@ -1,3 +1,4 @@
+import { isInaccessible } from "@testing-library/react";
 import React, { useContext, useState, useEffect } from "react";
 
 const ReproductionContext = React.createContext()
@@ -23,6 +24,7 @@ export function ReproductionProvider({ children }){
         setTracks([])
         setKey(1)
         setChangeStage(true)
+        setIndexReproduction(0)
         localStorage.setItem("tracks", JSON.stringify([]))
     }
 
@@ -44,12 +46,39 @@ export function ReproductionProvider({ children }){
     }
 
     function changeReproductionIndex(){
-        if(indexReproduction + 1 === tracks.length){
+        if(indexReproduction + 1 >= tracks.length){
             setIndexReproduction(0)
             return tracks[0]
         }
         setIndexReproduction(indexReproduction + 1)
         return tracks[indexReproduction + 1]
+    }
+
+    function changeReproductionIndexByPlay(trackKey){
+        let i = 0;
+        while(i < tracks.length){
+            if(tracks[i].key === trackKey){
+                setIndexReproduction(i)
+                break
+            }
+            i++
+        }
+    }
+
+    function changeReproductionIndexByRemove(trackKey){
+        let i = 0;
+        while(i < tracks.length){
+            if(tracks[i].key === trackKey){
+                if(tracks[i + 1]){
+                    setIndexReproduction(i + 1)
+                    return tracks[i + 1]
+                }
+                else {
+                    if(i ==)
+                }
+            }
+            i++
+        }
     }
 
     useEffect(()=>{
@@ -69,7 +98,10 @@ export function ReproductionProvider({ children }){
                 getTracks,
                 clearTracks,
                 removeTrack,
-                changeReproductionIndex
+                changeReproductionIndex,
+                setIndexReproduction,
+                changeReproductionIndexByPlay,
+                changeReproductionIndexByRemove
             }}
         >
             {children}

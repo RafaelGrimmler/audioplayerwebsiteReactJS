@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { Container, MainContentContainer, ResultContainer, ReproductionContainer, Title, TracksContainer, NothingContent, ClearReproduction } from './styles';
+import { Container, MainContentContainer, ResultContainer, ReproductionContainer, Title, TracksContainer, NothingContent, ClearReproduction, BroomIcon, BroomContainer, Play, Pause, PlayPauseReproductionContainer } from './styles';
 
 // components
 import Navbar from '../../Components/Navbar';
@@ -10,11 +10,13 @@ import Loading from '../../Components/Loading';
 
 // context
 import {useReproduction} from '../../Context/Reproduction'
+import {useCurrentMusic} from '../../Context/CurrentMusic'
 
 function Search() {
 
     const navigator = useNavigate()
     const Reproduction = useReproduction()
+    const CurrentMusic = useCurrentMusic()
     const { querry } = useParams()
     const [musics, setMusics] = useState([])
     const [index, setIndex] = useState(0)
@@ -22,6 +24,7 @@ function Search() {
     const [confirmContent, setConfirmContent] = useState(null)
     const [text, setText] = useState('')
     const [changeIndex, setChangeIndex] = useState(false)
+    const [changeReproductionState, setChangeReproductionState] = useState(false)
     var ReproductionKEY = 1
       
     async function FetchFunction(url, id, page){
@@ -77,6 +80,28 @@ function Search() {
       Reproduction.clearTracks()
     }
 
+    const HandleReproductionPause = () => {
+      CurrentMusic.setPlaying(false)
+    }
+
+    const HandleReproductionPlay = () => {
+      if(!CurrentMusic.reproduction){
+        CurrentMusic.setReproduction(true)
+        Reproduction.setIndexReproduction(-1)
+        CurrentMusic.setPlaying(true)
+        setChangeReproductionState(true)
+      }else{
+        CurrentMusic.setPlaying(true)
+      }
+    }
+
+    useEffect(()=>{
+      if(changeReproductionState){
+        CurrentMusic.setTrack(Reproduction.changeReproductionIndex())
+        setChangeReproductionState(false)
+      }
+    }, [changeReproductionState])
+
     return (
       <Container>
           <Navbar/>
@@ -115,12 +140,35 @@ function Search() {
             <ReproductionContainer>
               <Title>
                 Reprodução
-                <ClearReproduction
-                  onClick={HandleClearReproduction}
-                >
-                  Limpar
-                </ClearReproduction>
               </Title>
+              <ClearReproduction>
+                <PlayPauseReproductionContainer>
+                  { 
+                  (CurrentMusic.reproduction) ?
+                    (CurrentMusic.playing) ? 
+                    <Pause 
+                      title='pausar'
+                      onClick={HandleReproductionPause}
+                    />
+                      : 
+                    <Play
+                      title='Tocar'
+                      onClick={HandleReproductionPlay}
+                    />
+                    : 
+                    <Play
+                      title='Tocar'
+                      onClick={HandleReproductionPlay}
+                    />
+                  }
+                </PlayPauseReproductionContainer>
+                <BroomContainer 
+                  onClick={HandleClearReproduction}
+                  title='Limpar lista'
+                >
+                  <BroomIcon/>                  
+                </BroomContainer>
+              </ClearReproduction>
               <TracksContainer>
                 {
                   (Reproduction.getTracks().length > 0 || Array.isArray(Reproduction.getTracks())) &&
