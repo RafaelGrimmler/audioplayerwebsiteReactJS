@@ -14,6 +14,8 @@ function Track({ track, titleContainerWidth, interactiveContainerWidth, titleCon
   const Reproduction = useReproduction()
   const CurrentMusic = useCurrentMusic()
   const [changeTrack, setChangeTrack] = useState(false)
+  const [changeRemove, setChangeRemove] = useState(false)
+  const [changeTrackByRemove, setChangeTrackByRemove] = useState(false)
 
   const HandlePlayPause = () => {
     if(CurrentMusic.track){
@@ -82,9 +84,29 @@ function Track({ track, titleContainerWidth, interactiveContainerWidth, titleCon
   }
 
   const HandleRemove = () => {
-    console.log(Reproduction.changeReproductionIndexByRemove(track.key))
-    Reproduction.removeTrack(track.key)
+    if(CurrentMusic.track && CurrentMusic.track.key === track.key && track.key){
+      CurrentMusic.setTrack(null)
+      setChangeTrackByRemove(true)
+    }
+    setChangeRemove(true)
   }
+
+  useEffect(()=>{
+    if(changeRemove){
+      if(changeTrackByRemove){
+        CurrentMusic.setTrack(Reproduction.changeReproductionIndexByRemove(track.key))
+        setChangeTrackByRemove(false)
+        if(!CurrentMusic.playing){
+          CurrentMusic.setPlaying(true)
+        }
+        if(Reproduction.changeReproductionIndexByRemove(track.key) === undefined){
+          CurrentMusic.setReproduction(false)
+        }
+      }
+      Reproduction.removeTrack(track.key)
+      setChangeRemove(false)
+    }
+  }, [changeRemove])
 
   return (
       <Container>

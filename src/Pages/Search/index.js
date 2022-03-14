@@ -73,11 +73,14 @@ function Search() {
       if(e.target.scrollTop === (height * 65 + (height * 10 - 10) - (window.innerHeight - 305))){
         setChangeIndex(true)
         setIndex(index + 40)
-      }   
+      }
     }
 
     const HandleClearReproduction = () => {
       Reproduction.clearTracks()
+      CurrentMusic.setTrack(null)
+      CurrentMusic.setPlaying(false)
+      CurrentMusic.setReproduction(false)
     }
 
     const HandleReproductionPause = () => {

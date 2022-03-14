@@ -32,9 +32,23 @@ function Player() {
     }
   }
 
+  function onClickNext(){
+    if(CurrentMusic.reproduction){
+      
+    }
+  }
+
+  function onClickPrevious(){
+    
+  }
+
   useEffect(()=>{
     if(changeStage){
       CurrentMusic.setTrack(Reproduction.changeReproductionIndex())
+      if(Reproduction.changeReproductionIndex() === undefined){
+        CurrentMusic.setPlaying(false)
+        CurrentMusic.setReproduction(false)
+      }
       setChangeStage(false)
     }
   }, [changeStage])
@@ -64,6 +78,8 @@ function Player() {
           onPlay={onPlayHandle}
           onPause={onPauseHandle}
           onEnded={onEndedHandle}
+          onClickNext={onClickNext}
+          onClickPrevious={onClickPrevious}
           src={CurrentMusic.track ? CurrentMusic.track.preview : ""}
           showSkipControls={true} 
           autoPlayAfterSrcChange={true}

@@ -11,7 +11,7 @@ export function ReproductionProvider({ children }){
 
     const [ tracks, setTracks ] = useState(JSON.parse(localStorage.getItem("tracks")) || [])
     const [ changeStage, setChangeStage ] = useState(false)
-    const [ key, setKey ] = useState(JSON.parse(localStorage.getItem("key")) || 1)
+    const [ key, setKey ] = useState((JSON.parse(localStorage.getItem("key")) + 2) || 1)
     const [ indexReproduction, setIndexReproduction ] = useState(0)
 
     function addTrack( track ){
@@ -22,7 +22,7 @@ export function ReproductionProvider({ children }){
 
     function clearTracks(){
         setTracks([])
-        setKey(1)
+        setKey(0)
         setChangeStage(true)
         setIndexReproduction(0)
         localStorage.setItem("tracks", JSON.stringify([]))
@@ -47,8 +47,7 @@ export function ReproductionProvider({ children }){
 
     function changeReproductionIndex(){
         if(indexReproduction + 1 >= tracks.length){
-            setIndexReproduction(0)
-            return tracks[0]
+            return undefined
         }
         setIndexReproduction(indexReproduction + 1)
         return tracks[indexReproduction + 1]
@@ -74,18 +73,27 @@ export function ReproductionProvider({ children }){
                     return tracks[i + 1]
                 }
                 else {
-                    if(i ==)
+                    if(i === tracks.length - 1 && i === 0){
+                        setIndexReproduction(0)
+                        return undefined
+                    }
+                    else{
+                        if(i === tracks.length - 1){
+                            setIndexReproduction(i - 1)
+                            return tracks[i - 1]
+                        }
+                    }
                 }
             }
             i++
         }
+        return null
     }
 
     useEffect(()=>{
         if(changeStage === true){
             localStorage.setItem("tracks", JSON.stringify(tracks))
             localStorage.setItem("key", JSON.stringify(key))
-            console.log(tracks)
             setKey(key + 1)
             setChangeStage(false)
         }
