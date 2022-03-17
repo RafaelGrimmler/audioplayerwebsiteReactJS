@@ -53,6 +53,15 @@ export function ReproductionProvider({ children }){
         return tracks[indexReproduction + 1]
     }
 
+    function changeReproductionIndexPrevious(){
+        if(indexReproduction - 1 <= 0){
+            setIndexReproduction(0)
+            return tracks[0]
+        }
+        setIndexReproduction(indexReproduction - 1)
+        return tracks[indexReproduction - 1]
+    }
+
     function changeReproductionIndexByPlay(trackKey){
         let i = 0;
         while(i < tracks.length){
@@ -69,7 +78,6 @@ export function ReproductionProvider({ children }){
         while(i < tracks.length){
             if(tracks[i].key === trackKey){
                 if(tracks[i + 1]){
-                    setIndexReproduction(i + 1)
                     return tracks[i + 1]
                 }
                 else {
@@ -109,7 +117,7 @@ export function ReproductionProvider({ children }){
                 changeReproductionIndex,
                 setIndexReproduction,
                 changeReproductionIndexByPlay,
-                changeReproductionIndexByRemove
+                changeReproductionIndexByRemove,changeReproductionIndexPrevious
             }}
         >
             {children}

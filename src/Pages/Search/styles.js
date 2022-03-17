@@ -18,12 +18,20 @@ export const MainContentContainer = styled.main`
   top: 0;
   display: flex;
   justify-content: center;
+  overflow-y: scroll;
   
   @media only screen and (max-width: 768px){
     & {
       margin-left: 0px;
       width: 100vw;
     }
+  }
+
+  @media only screen and (max-width: 1200px){
+      & {
+        flex-direction: column;
+        justify-content: unset;
+      }
   }
 `;
 
@@ -66,6 +74,7 @@ export const ResultContainer = styled.div`
       margin-right: 10px;
       margin-left: 10px;
       margin-top: 15px;
+      margin-bottom: 0px;
     }
   }
 `;
@@ -82,6 +91,14 @@ export const ReproductionContainer = styled.div`
   padding-bottom: 10px;
   margin-right: 10px;
   position: relative;
+  min-height: 400px;
+
+  @media only screen and (max-width: 416px){
+      & {
+        padding-left: 7px;
+        padding-right: 7px;
+      }
+  }
 
   @media only screen and (max-width: 1333px){
       & {
@@ -91,8 +108,20 @@ export const ReproductionContainer = styled.div`
 
   @media only screen and (max-width: 1200px){
       & {
-        display: none;
+        //display: none;
+        width: calc(100% - 100px);
+        margin-left: 50px;
+        margin-right: 50px;
       }
+  }
+
+  @media only screen and (max-width: 560px){
+    & {
+      width: calc(100% - 20px);
+      margin-right: 10px;
+      margin-left: 10px;
+      margin-top: 20px;
+    }
   }
 `;
 

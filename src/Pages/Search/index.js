@@ -88,16 +88,17 @@ function Search() {
     }
 
     const HandleReproductionPlay = () => {
-      if(!CurrentMusic.reproduction){
+      if(!CurrentMusic.reproduction && Reproduction.getTracks().length > 0){
         CurrentMusic.setReproduction(true)
         Reproduction.setIndexReproduction(-1)
         CurrentMusic.setPlaying(true)
+        CurrentMusic.setTrack(null)
         setChangeReproductionState(true)
       }else{
         CurrentMusic.setPlaying(true)
       }
     }
-
+    
     useEffect(()=>{
       if(changeReproductionState){
         CurrentMusic.setTrack(Reproduction.changeReproductionIndex())

@@ -17,11 +17,25 @@ export const MainContentContainer = styled.main`
   align-items: center;
   overflow-y: scroll;
 
+  &::-webkit-scrollbar {
+    width: 6px;
+    background-color: var(--color-special-background);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--color-text-special);
+  }
+
   
   @media only screen and (max-width: 768px){
     & {
       margin-left: 0px;
       width: 100vw;
     }
+
+    &::-webkit-scrollbar {
+      width: 0px;
+    }
   }
+
 `;

@@ -16,6 +16,7 @@ function Player() {
   const Reproduction = useReproduction()
   const player = createRef()
   const [changeStage, setChangeStage] = useState(false)
+  const [changeStageToPrevious, setChangeStageToPrevious] = useState(false)
 
   function onPlayHandle(){
     CurrentMusic.setPlaying(true)
@@ -34,12 +35,16 @@ function Player() {
 
   function onClickNext(){
     if(CurrentMusic.reproduction){
-      
+      CurrentMusic.setTrack(null)
+      setChangeStage(true)
     }
   }
 
   function onClickPrevious(){
-    
+    if(CurrentMusic.reproduction){
+      CurrentMusic.setTrack(null)
+      setChangeStageToPrevious(true)
+    }
   }
 
   useEffect(()=>{
@@ -51,7 +56,11 @@ function Player() {
       }
       setChangeStage(false)
     }
-  }, [changeStage])
+    if(changeStageToPrevious){
+      CurrentMusic.setTrack(Reproduction.changeReproductionIndexPrevious)
+      setChangeStageToPrevious(false)
+    }
+  }, [changeStage, changeStageToPrevious])
 
   useEffect(()=>{
     if(CurrentMusic.playing){
