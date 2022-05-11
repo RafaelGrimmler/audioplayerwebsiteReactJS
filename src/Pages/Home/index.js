@@ -15,6 +15,7 @@ function Search() {
   const artistList = Promise.all(
     artistsIds.map( id => FetchFunction('https://deezerdevs-deezer.p.rapidapi.com/artist/', id))
   )
+
   async function FetchFunction(url, id){
     return await fetch(`${url}${id}`, {
     "method": "GET",

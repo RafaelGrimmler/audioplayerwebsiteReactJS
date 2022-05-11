@@ -6,6 +6,7 @@ import GlobalStyle from './Styles/styles'
 // Pages
 import Home from './Pages/Home'
 import Search from "./Pages/Search";
+import Artist from "./Pages/Artist";
 
 // components
 import Player from "./Components/Player"
@@ -27,6 +28,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home/>} />
             <Route path="/buscar/:querry" element={<Search/>} />
+            <Route path="/artista/:id" element={<Artist/>} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
 

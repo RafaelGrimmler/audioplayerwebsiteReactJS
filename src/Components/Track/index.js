@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { Container, ImageContainer, InformationsContainer, TitleContainer, InteractiveContainer, TrackTitle, TrackArtist, ReproductionAction, PlayAction, Add, Play, ImagePlayContainer, Pause, CircleSvgContainer, Remove } from './styles';
 
@@ -11,6 +12,7 @@ import circle from '../../Images/circle.svg'
 
 function Track({ track, titleContainerWidth, interactiveContainerWidth, titleContainerWidthResz, reproduction }) {
 
+  const navigator = useNavigate()
   const Reproduction = useReproduction()
   const CurrentMusic = useCurrentMusic()
   const [changeTrack, setChangeTrack] = useState(false)
@@ -147,6 +149,7 @@ function Track({ track, titleContainerWidth, interactiveContainerWidth, titleCon
             </TrackTitle>
             <TrackArtist 
               title={track.artist.name}
+              onClick={() => navigator(`/artista/${track.artist.id}`)}
             >
               {track.artist.name}
             </TrackArtist>

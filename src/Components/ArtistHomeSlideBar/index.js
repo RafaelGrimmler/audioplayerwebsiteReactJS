@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { Container, ContentBlock, ArtistImageContainer, ScrollButton, RightArrow, LeftArrow, ListWrapper, LoadingContainer } from './styles';
 
@@ -6,6 +7,8 @@ import { Container, ContentBlock, ArtistImageContainer, ScrollButton, RightArrow
 import Loading from '../../Components/Loading'
 
 function ArtistHomeSlideBar({ content }) {
+
+    const navigator = useNavigate()
 
     const [informations, setInformations] = useState([])
     const [positionx, setPositionx] = useState(0)
@@ -45,6 +48,7 @@ function ArtistHomeSlideBar({ content }) {
                             <li key={item.id}>
                                 <ContentBlock 
                                     title={item.name}
+                                    onClick={() => navigator(`/artista/${item.id}`)}
                                 >
                                     <ArtistImageContainer>
                                         <img 

@@ -76,6 +76,11 @@ export const ContentBlock = styled.div`
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
+        transition: .5s;
+    }
+    
+    & span:hover {
+        color: var(--color-text-special);
     }
 `;
 
