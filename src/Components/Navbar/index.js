@@ -8,6 +8,7 @@ function Navbar() {
   const navigator = useNavigate()
 
   const list = ['Início', 'Artistas', 'Álbuns', 'Reprodução']
+  const listNav = ['/', '/artistas', '/albuns', '/reprodução']
   const [selected, setSelected] = useState(0)
   const [hoverContainer, setHoverContainer] = useState(false)
   const [text, setText] = useState('')
@@ -70,7 +71,7 @@ function Navbar() {
                       hoverContainer={hoverContainer}
                       selected={index === selected ? true : false}
                       onMouseOver={() => setSelected(index)}
-                      onClick={()=>navigator(`/`)}
+                      onClick={()=>navigator(`${listNav[index]}`)}
                     >
                       <span>{list[index]}</span>
                       {index === 0 && <HomeIcon 
