@@ -28,6 +28,11 @@ export const MainContentContainer = styled.main`
     background-color: var(--color-text-special);
   }
 
+  @media only screen and (max-width: 1245px){
+    & { 
+      flex-direction: column;
+    }
+  }
   
   @media only screen and (max-width: 768px){
     & {
@@ -49,6 +54,23 @@ export const ArtistInformationsContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media only screen and (max-width: 1245px){
+    & { 
+      width: 200px;
+      margin-left: 0px;
+      margin-top: 50px;
+      margin-bottom: 20px;
+    }
+  }
+
+  @media only screen and (max-width: 768px){
+    & { 
+      width: 150px;
+      margin-top: 20px;
+      margin-bottom: 0px;
+    }
+  }
 `;
 
 export const ArtistImageContainer = styled.div`
@@ -56,6 +78,20 @@ export const ArtistImageContainer = styled.div`
   height: 400px;
   border-radius: 40px;
   position: relative;
+
+  @media only screen and (max-width: 1245px){
+    & { 
+      height: 250px;
+    }
+  }
+
+  @media only screen and (max-width: 768px){
+    & { 
+      height: 150px;
+    }
+  }
+
+
 `;
 
 export const ArtistImage = styled.img`
@@ -91,6 +127,22 @@ export const ArtistNameContainer = styled.div`
     text-align: center;
     overflow: hidden;
   }
+
+  @media only screen and (max-width: 1245px){
+    & span { 
+      font-size: 16px;
+    }
+  }
+
+  @media only screen and (max-width: 768px){
+    & span { 
+      font-size: 14px;
+    }
+
+    & {
+      margin-top: 0px;
+    }
+  }
 `;
 
 export const TracksContainer = styled.div`
@@ -99,6 +151,26 @@ export const TracksContainer = styled.div`
   margin-right: 120px;
   background-color: var(--color-special-background);
   padding: 20px;
+
+  @media only screen and (max-width: 1245px){
+    & { 
+      width: calc(100% - 120px);
+      margin-right: 0px;
+      margin-bottom: 120px;
+    }
+  }
+
+  @media only screen and (max-width: 768px){
+    & { 
+      height: 400px;
+    }
+  }
+
+  @media only screen and (max-width: 514px){
+    & { 
+      width: calc(100% - 10px);
+    }
+  }
 `;
 
 export const TrackList = styled.ul`
@@ -118,4 +190,6 @@ export const TrackList = styled.ul`
   &::-webkit-scrollbar-thumb {
     background-color: var(--color-text-special);
   }
+
+
 `;

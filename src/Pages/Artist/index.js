@@ -14,8 +14,6 @@ function Artists() {
   const [artist, setArtist] = useState(null)
   const [tracks, setTracks] = useState(false)
 
-  console.log(tracks)
-
   useEffect(()=>{
       fetch(`https://deezerdevs-deezer.p.rapidapi.com/artist/${id}`, {
         method: 'GET',
@@ -53,9 +51,7 @@ function Artists() {
         <MainContentContainer>
           <ArtistInformationsContainer>
             <ArtistImageContainer>
-              <ArtistImage 
-                src={artist ? artist.picture_xl || artist.picture_big : ''}
-              />
+              {artist ? <ArtistImage src={artist.picture_xl || artist.picture_big}/> : ''}
               {artist ? (
               <ArtistImageShadow />
               ) : ''}
