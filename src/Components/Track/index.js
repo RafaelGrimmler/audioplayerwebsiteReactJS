@@ -10,7 +10,7 @@ import {useReproduction} from '../../Context/Reproduction'
 // image
 import circle from '../../Images/circle.svg'
 
-function Track({ track, titleContainerWidth, interactiveContainerWidth, titleContainerWidthResz, reproduction }) {
+function Track({ track, titleContainerWidth, interactiveContainerWidth, titleContainerWidthResz, reproduction, image}) {
 
   const navigator = useNavigate()
   const Reproduction = useReproduction()
@@ -114,7 +114,7 @@ function Track({ track, titleContainerWidth, interactiveContainerWidth, titleCon
       <Container>
         <ImageContainer>
           <img 
-            src={track.album.cover_big || track.album.cover} 
+            src={image || track.album.cover_big || track.album.cover} 
             alt={track.title} 
           />
           <ImagePlayContainer

@@ -8,6 +8,8 @@ import Home from './Pages/Home'
 import Search from "./Pages/Search";
 import Artist from "./Pages/Artist";
 import Artists from "./Pages/Artists";
+import Albums from "./Pages/Albums";
+import Album from "./Pages/Album";
 
 // components
 import Player from "./Components/Player"
@@ -31,6 +33,8 @@ function App() {
             <Route path="/buscar/:querry" element={<Search/>} />
             <Route path="/artista/:id" element={<Artist/>} />
             <Route path="/artistas" element={<Artists/>} />
+            <Route path="/albuns" element={<Albums/>} />
+            <Route path="/album/:id" element={<Album/>} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
 
